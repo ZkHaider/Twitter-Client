@@ -1,0 +1,52 @@
+PODS:
+  - AFNetworking (2.6.3):
+    - AFNetworking/NSURLConnection (= 2.6.3)
+    - AFNetworking/NSURLSession (= 2.6.3)
+    - AFNetworking/Reachability (= 2.6.3)
+    - AFNetworking/Security (= 2.6.3)
+    - AFNetworking/Serialization (= 2.6.3)
+    - AFNetworking/UIKit (= 2.6.3)
+  - AFNetworking/NSURLConnection (2.6.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.6.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.6.3)
+  - AFNetworking/Security (2.6.3)
+  - AFNetworking/Serialization (2.6.3)
+  - AFNetworking/UIKit (2.6.3):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - BDBOAuth1Manager (1.6.0):
+    - AFNetworking/NSURLConnection (~> 2.6.0)
+    - AFNetworking/NSURLSession (~> 2.6.0)
+  - KFSwiftImageLoader (3.0.0)
+  - KRProgressHUD (2.0.0)
+  - Material (2.1.2)
+  - ModelMapper (5.0.0)
+  - SwiftGifOrigin (1.5.3)
+
+DEPENDENCIES:
+  - AFNetworking (~> 2.5)
+  - BDBOAuth1Manager
+  - KFSwiftImageLoader
+  - KRProgressHUD
+  - Material
+  - ModelMapper
+  - SwiftGifOrigin
+
+SPEC CHECKSUMS:
+  AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  BDBOAuth1Manager: cd5a5872f355ca38180d52ca2dd844f0b0c84797
+  KFSwiftImageLoader: c4656d614329480308b190c2b6f15015a4018ffc
+  KRProgressHUD: fa77b02194e532579579d5f0953282dab1c961c5
+  Material: e27257b2efea0ea145150b141da22e1d68bef552
+  ModelMapper: 89ced1f51ec6360e93f6889d08c818d4cad526a3
+  SwiftGifOrigin: 893ebcceabe215a00b607328b5322b4e228347e5
+
+PODFILE CHECKSUM: 09f929a60735c83981291a7fb76fbe889eb87c2a
+
+COCOAPODS: 1.0.1

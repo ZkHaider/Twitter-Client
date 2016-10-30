@@ -1,14 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11535.1" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11523"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -18,9 +22,78 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="glu-R4-ntN">
+            <objects>
+                <viewController storyboardIdentifier="loginViewController" id="Y4m-DQ-Dvz" customClass="LoginViewController" customModule="Twitter_Client" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="V77-Wu-20J"/>
+                        <viewControllerLayoutGuide type="bottom" id="B8a-iH-wpm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JRc-tZ-hLx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ix0-Uc-gQ1">
+                                <rect key="frame" x="112" y="52" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="HfN-pd-v9E"/>
+                                    <constraint firstAttribute="width" constant="150" id="ouz-em-htP"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XfF-xp-6Wn" customClass="RaisedButton" customModule="Material">
+                                <rect key="frame" x="58" y="308.5" width="259" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="259" id="500-TG-mXu"/>
+                                    <constraint firstAttribute="height" constant="50" id="7xL-Xt-njv"/>
+                                </constraints>
+                                <state key="normal" title="Login With Twitter"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="pulseColor">
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ix0-Uc-gQ1" firstAttribute="top" secondItem="V77-Wu-20J" secondAttribute="bottom" constant="32" id="BBm-4m-xoU"/>
+                            <constraint firstItem="ix0-Uc-gQ1" firstAttribute="centerX" secondItem="JRc-tZ-hLx" secondAttribute="centerX" id="Nm4-Vh-Y8T"/>
+                            <constraint firstItem="XfF-xp-6Wn" firstAttribute="centerY" secondItem="JRc-tZ-hLx" secondAttribute="centerY" id="kp3-gc-u9Z"/>
+                            <constraint firstItem="XfF-xp-6Wn" firstAttribute="centerX" secondItem="JRc-tZ-hLx" secondAttribute="centerX" id="qrW-xK-d5e"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="loginButton" destination="XfF-xp-6Wn" id="5hD-y5-llh"/>
+                        <outlet property="twitterBirdImage" destination="ix0-Uc-gQ1" id="nw7-El-c5x"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aTz-LM-zMv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="876.61169415292363"/>
+        </scene>
+        <!--Tweet Compose View Controller-->
+        <scene sceneID="uPg-P3-2ZJ">
+            <objects>
+                <viewController storyboardIdentifier="tweetViewController" modalPresentationStyle="overCurrentContext" id="Jx8-Bv-NoA" customClass="TweetComposeViewController" customModule="Twitter_Client" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y1t-z9-YCA"/>
+                        <viewControllerLayoutGuide type="bottom" id="MFE-cq-Fdh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="j53-W0-HRh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aXR-hd-4SE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="854" y="137"/>
         </scene>
     </scenes>
 </document>

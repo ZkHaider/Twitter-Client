@@ -7,15 +7,23 @@
 //
 
 import UIKit
+import Material
+
+// Storyboard
+let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        // Register a logout notification
+        NotificationCenter.default.addObserver(self, selector: #selector(userDidLogout), name: NSNotification.Name(rawValue: userDidLogoutNotification), object: nil)
+        
+        switchControllers()
+        
         return true
     }
 
@@ -40,7 +48,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        TwitterClient.instance.openURL(url: url)
+        return true
+    }
 
+    @objc func userDidLogout() {
+        User.currentUser = nil
+        switchControllers()
+    }
 
+}
+
+extension AppDelegate {
+    
+    func switchControllers() {
+        // Override point for customization after application launch.
+        if User.currentUser != nil {
+            window = UIWindow(frame: Device.bounds)
+            window!.rootViewController = TwitterFeedController(rootViewController: RootViewController())
+            window!.makeKeyAndVisible()
+        } else {
+            window = UIWindow(frame: Device.bounds)
+            window!.rootViewController = mainStoryboard.instantiateViewController(withIdentifier: "loginViewController") as! LoginViewController
+            window!.makeKeyAndVisible()
+        }
+
+    }
+    
 }
 

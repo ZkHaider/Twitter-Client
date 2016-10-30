@@ -20,11 +20,19 @@ class TweetCell: UITableViewCell {
     
     func updateWithStatus(status: Status) {
         
+        self.userName.text = status.user.name
+        self.userImage.loadImage(url: status.user.profileImageURL as URL)
+        self.twitterHandle.text = "@" + status.user.screenName
+        self.tweetText.text = status.text
+//        self.mediaImage.loadImage(url: status.mediaImageURL as URL)
+        
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-    
+        
+        userImage.layer.cornerRadius = 30
+        
         // Go ahead and set icon buttons
         prepareIconButtons()
     }

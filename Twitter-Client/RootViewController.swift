@@ -66,6 +66,11 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tweetCell = tableView.dequeueReusableCell(withIdentifier: "tweetCell", for: indexPath) as! TweetCell
+        
+        // Get status
+        let status = statuses![indexPath.row]
+        tweetCell.updateWithStatus(status: status)
+        
         return tweetCell
     }
     

@@ -31,7 +31,7 @@ class Status: NSObject {
         if dictionary["extended_entities"] != nil {
             let extendedDictionary = dictionary["extended_entities"] as! NSDictionary
             let mediaDictionary = extendedDictionary["media"] as! [NSDictionary]
-            let mediaUrlString = mediaDictionary[0]["media_url"] as! String
+            let mediaUrlString = (mediaDictionary[0]["media_url"] as! String).appending(":thumb")
             self.mediaImageURL = NSURL(string: mediaUrlString) as! URL
         }
         

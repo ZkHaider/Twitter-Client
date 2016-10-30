@@ -15,6 +15,7 @@ class Status: NSObject {
     var createdAt: NSDate
     var numberOfRetweets: Int
     var numberOfFavorites: Int
+    var mediaImageURL: URL = NSURL() as URL
     
     init(dictionary: NSDictionary) {
         self.user = User(dictionary: dictionary["user"] as! NSDictionary)
@@ -26,6 +27,15 @@ class Status: NSObject {
         
         self.numberOfRetweets = dictionary["retweet_count"] as! Int
         self.numberOfFavorites = dictionary["favorite_count"] as! Int
+        
+        if dictionary["extended_entities"] != nil {
+            let extendedDictionary = dictionary["extended_entities"] as! NSDictionary
+            let mediaDictionary = extendedDictionary["media"] as! [NSDictionary]
+            let mediaUrlString = mediaDictionary[0]["media_url"] as! String
+            self.mediaImageURL = NSURL(string: mediaUrlString) as! URL
+        }
+        
+        print(mediaImageURL.absoluteString)
     }
     
     class func statusesWithArray(array: [NSDictionary]) -> [Status] {

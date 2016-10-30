@@ -29,6 +29,7 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
     func homelineWithParams(params: NSDictionary?, completion: @escaping (_ statuses: [Status]?, _ error: NSError?) -> ()) {
         self.get("1.1/statuses/home_timeline.json", parameters: params, success: { (operation, response) in
             
+            print(response)
             let statuses = Status.statusesWithArray(array: response as! [NSDictionary])
             completion(statuses, nil)
             

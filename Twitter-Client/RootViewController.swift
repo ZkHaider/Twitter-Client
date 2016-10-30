@@ -104,9 +104,6 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             
             if statuses != nil {
-                for status in statuses! {
-                    
-                }
                 self.statuses = statuses
                 self.tweetsTableView.reloadData()
             }

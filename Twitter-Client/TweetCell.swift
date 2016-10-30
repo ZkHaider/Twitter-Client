@@ -11,7 +11,16 @@ import Material
 
 class TweetCell: UITableViewCell {
     
+    @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var twitterHandle: UILabel!
+    @IBOutlet weak var tweetText: UILabel!
+    @IBOutlet weak var mediaImage: UIImageView!
     @IBOutlet weak var buttonStackView: UIStackView!
+    
+    func updateWithStatus(status: Status) {
+        
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

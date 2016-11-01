@@ -105,11 +105,16 @@ class TweetCell: UITableViewCell {
     @objc func replied(sender: TwitterButton) {
         if sender.isSelected {
             // deselect
+            status?.replied = false
             sender.deselect()
         } else {
             // select with animation
+            status?.replied = true
             sender.select()
         }
+        
+        // Update our cell
+        updateTweet!(status!, indexPath!)
     }
     
 }

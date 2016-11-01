@@ -20,6 +20,8 @@ class TweetComposeViewController: UIViewController {
     lazy var tweetFab: FabButton = FabButton(image: Icon.cm.check, tintColor: .white)
     // Our bottom constraint to be initialized later
     var tweetFabBottomConstraint: NSLayoutConstraint = NSLayoutConstraint()
+    
+    var delegate: TweetDelegate?
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +77,24 @@ class TweetComposeViewController: UIViewController {
                     self.dismiss(animated: true, completion: nil)
                 }
             })
+            
+            let date = NSDate()
+            let formatter = DateFormatter()
+            formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
+            
+            let status: NSDictionary = [
+                "user": User.currentUser?.dictionary as AnyObject,
+                "text": tweetText as AnyObject,
+                "favorite_count": 0,
+                "retweet_count": 0,
+                "favorited": 0,
+                "retweeted": 0,
+                "created_at": formatter.string(from: date as Date) as AnyObject
+            ]
+            
+            let newStatus = Status(dictionary: status)
+            self.delegate?.tweetPassed(status: newStatus)
+            self.dismiss(animated: true, completion: nil)
         }
     }
     

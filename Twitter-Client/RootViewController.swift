@@ -144,7 +144,7 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         // Go ahead and show a tweet compose controller 
         let tweetComposeViewController = mainStoryboard.instantiateViewController(withIdentifier: "tweetViewController") as! TweetComposeViewController
-        
+        tweetComposeViewController.delegate = self
 //        self.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
 //        self.navigationController?.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
         
@@ -152,7 +152,8 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tweetPassed(status: Status) {
-        
+        self.statuses?.insert(status, at: 0)
+        self.tweetsTableView.reloadData()
     }
 
 }

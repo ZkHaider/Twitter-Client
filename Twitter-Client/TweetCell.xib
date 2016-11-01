@@ -20,12 +20,15 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Xp-aJ-cmi" customClass="FlatButton" customModule="Material">
-                        <rect key="frame" x="0.0" y="0.0" width="443" height="689.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="443" height="690"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="pulseColor">
                                 <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="cellSelected:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Xi2-qb-e4C"/>
+                        </connections>
                     </button>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4XE-2c-spa">
                         <rect key="frame" x="16" y="18" width="60" height="60"/>
@@ -41,20 +44,20 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kk7-AG-CGt">
-                        <rect key="frame" x="96" y="42.5" width="319" height="284.5"/>
+                        <rect key="frame" x="96" y="43" width="319" height="284.5"/>
                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="UVy-ZM-lbQ">
-                        <rect key="frame" x="40" y="643.5" width="363" height="30"/>
+                        <rect key="frame" x="40" y="644" width="363" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="cMV-os-bB6"/>
                         </constraints>
                     </stackView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="9xe-9T-leI">
-                        <rect key="frame" x="0.0" y="337" width="443" height="298.5"/>
+                        <rect key="frame" x="0.0" y="337.5" width="443" height="298.5"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="@realdealhommieG" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="46I-NC-30Q">
                         <rect key="frame" x="284" y="18" width="131" height="17"/>
@@ -89,6 +92,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="buttonStackView" destination="UVy-ZM-lbQ" id="7lW-LP-aUQ"/>
+                <outlet property="cellButton" destination="6Xp-aJ-cmi" id="7bd-vv-PQJ"/>
                 <outlet property="mediaImage" destination="9xe-9T-leI" id="O4e-xA-P7R"/>
                 <outlet property="tweetText" destination="Kk7-AG-CGt" id="AlP-PE-xKX"/>
                 <outlet property="twitterHandle" destination="46I-NC-30Q" id="Zcz-0S-Qsz"/>

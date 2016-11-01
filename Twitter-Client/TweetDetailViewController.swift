@@ -1,80 +1,48 @@
 //
-//  TweetCell.swift
+//  TweetDetailViewController.swift
 //  Twitter-Client
 //
-//  Created by Haider Khan on 10/29/16.
+//  Created by Haider Khan on 11/1/16.
 //  Copyright © 2016 ZkHaider. All rights reserved.
 //
 
 import UIKit
 import Material
 
-class TweetCell: UITableViewCell {
+class TweetDetailViewController: UIViewController {
     
-    @IBOutlet weak var cellButton: FlatButton!
-    @IBOutlet weak var userImage: UIImageView!
-    @IBOutlet weak var userName: UILabel!
-    @IBOutlet weak var twitterHandle: UILabel!
-    @IBOutlet weak var tweetText: UILabel!
-    @IBOutlet weak var mediaImage: UIImageView!
-    @IBOutlet weak var buttonStackView: UIStackView!
-    
-    // Our update callback 
-    var updateTweet: ((_ updateTweet: Status, _ forIndexPath: IndexPath) -> ())?
-    var cellSelected: ((_ status: Status) -> ())?
-    
-    var indexPath: IndexPath?
-    var status: Status?
-    
+    let cancelButton: IconButton = IconButton(image: Icon.cm.clear, tintColor: Color.grey.lighten1)
     let retweetButton: TwitterButton = TwitterButton(frame: CGRect(x: 0, y: 0, width: 45, height: 45), image: UIImage(named: "retweet_256"))
     let favoriteButton: TwitterButton = TwitterButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40), image: UIImage(named: "favorite-heart-button"))
     let replyButton: TwitterButton = TwitterButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40), image: UIImage(named: "reply"))
 
-    func updateWithStatus(status: Status, indexPath: IndexPath, update: @escaping (_ updateTweet: Status, _ forIndexPath: IndexPath) -> ()) {
-        
-        // Set vars
-        self.indexPath = indexPath
-        self.status = status
-        self.updateTweet = update
-        
-        // Update
-        self.userName.text = status.user.name
-        self.userImage.loadImage(url: status.user.profileImageURL as URL)
-        self.twitterHandle.text = "@" + status.user.screenName
-        self.tweetText.text = status.text
-//        self.mediaImage.loadImage(url: status.mediaImageURL as URL)
-        
-        // Check flags and set buttons
-        if status.retweeted {
-            retweetButton.select()
-        } else {
-            retweetButton.deselect()
-        }
-        
-        if status.favorited {
-            favoriteButton.select()
-        } else {
-            favoriteButton.deselect()
-        }
-    }
+    var status: Status?
+
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var handleLabel: UILabel!
+    @IBOutlet weak var tweetText: UILabel!
+    @IBOutlet weak var buttonStackView: UIStackView!
     
-    func addSelectionCallback(selected: @escaping (_ status: Status) -> ()) {
-        self.cellSelected = selected
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        userImage.layer.cornerRadius = 30
+        profileImage.layer.cornerRadius = 30
         
-        // Go ahead and set icon buttons
+        prepareMainContainer()
+        prepareCancelButton()
+        prepareStatus()
         prepareButtons()
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    @objc func cancelTapped() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     @objc func retweeted(sender: TwitterButton) {
@@ -88,9 +56,7 @@ class TweetCell: UITableViewCell {
             status?.retweeted = true
             sender.select()
         }
-        
-        // Update our cell
-        updateTweet!(status!, indexPath!)
+
     }
     
     @objc func favorited(sender: TwitterButton) {
@@ -103,9 +69,7 @@ class TweetCell: UITableViewCell {
             status?.favorited = true
             sender.select()
         }
-        
-        // Update our cell
-        updateTweet!(status!, indexPath!)
+    
     }
     
     @objc func replied(sender: TwitterButton) {
@@ -118,17 +82,58 @@ class TweetCell: UITableViewCell {
             status?.replied = true
             sender.select()
         }
-        
-        // Update our cell
-        updateTweet!(status!, indexPath!)
+
     }
-    
-    @IBAction func cellSelected(_ sender: FlatButton) {
-        cellSelected!(status!)
-    }
+
+
 }
 
-extension TweetCell {
+extension TweetDetailViewController {
+    
+    internal func prepareMainContainer() {
+        containerView.layer.shadowColor = UIColor.black.cgColor
+        containerView.layer.shadowOpacity = 0.7
+        containerView.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        containerView.layer.shadowRadius = 2.0
+    }
+    
+    internal func prepareCancelButton() {
+        
+        // Prepare pulse
+        cancelButton.pulseColor = Color.grey.base
+        
+        // Layout cancel button
+        view.layout(cancelButton)
+            .width(30)
+            .height(30)
+            .topLeft(top: 26, left: 12)
+        
+        cancelButton.addTarget(self, action: #selector(cancelTapped), for: UIControlEvents.touchUpInside)
+    }
+    
+    internal func prepareStatus() {
+        
+        // Update
+        self.nameLabel.text = status?.user.name
+        self.profileImage.loadImage(url: status?.user.profileImageURL as! URL)
+        self.handleLabel.text = "@" + (status?.user.screenName)!
+        self.tweetText.text = status?.text
+        //        self.mediaImage.loadImage(url: status.mediaImageURL as URL)
+        
+        // Check flags and set buttons
+        if (status?.retweeted)! {
+            retweetButton.select()
+        } else {
+            retweetButton.deselect()
+        }
+        
+        if (status?.favorited)! {
+            favoriteButton.select()
+        } else {
+            favoriteButton.deselect()
+        }
+
+    }
     
     internal func prepareButtons() {
         
@@ -145,7 +150,6 @@ extension TweetCell {
         favoriteButton.circleColor = Color.red.base
 //        favoriteButton.tintColor = UIColor.clear
         favoriteButton.addTarget(self, action: #selector(favorited(sender:)), for: .touchUpInside)
-//        favoriteButton.titC
         
         replyButton.imageColorOn = Color.blue.base
         replyButton.imageColorOff = Color.grey.lighten1

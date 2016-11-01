@@ -76,9 +76,19 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         // Get status
         let status = statuses![indexPath.row]
+        
+        // Configure cell
         tweetCell.updateWithStatus(status: status, indexPath: indexPath, update: updateTweet)
+        tweetCell.addSelectionCallback(selected: cellSelected)
         
         return tweetCell
+    }
+    
+    func cellSelected(status: Status) {
+        
+        let tweetDetailViewController = mainStoryboard.instantiateViewController(withIdentifier: "tweetDetailViewController") as! TweetDetailViewController
+        tweetDetailViewController.status = status
+        self.present(tweetDetailViewController, animated: true, completion: nil)
     }
     
     func updateTweet(status: Status, indexPath: IndexPath) {

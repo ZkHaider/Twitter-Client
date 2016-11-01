@@ -16,6 +16,9 @@ class Status: NSObject {
     var numberOfRetweets: Int
     var numberOfFavorites: Int
     var mediaImageURL: URL = NSURL() as URL
+    var replied: Bool
+    var retweeted: Bool
+    var favorited: Bool
     
     init(dictionary: NSDictionary) {
         self.user = User(dictionary: dictionary["user"] as! NSDictionary)
@@ -34,6 +37,10 @@ class Status: NSObject {
             let mediaUrlString = (mediaDictionary[0]["media_url"] as! String).appending(":thumb")
             self.mediaImageURL = NSURL(string: mediaUrlString) as! URL
         }
+        
+        self.favorited = (dictionary["favorited"] as? Bool) ?? false
+        self.retweeted = (dictionary["retweeted"] as? Bool) ?? false
+        self.replied = false
         
         print(mediaImageURL.absoluteString)
     }

@@ -42,6 +42,21 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
         })
     }
     
+    func tweetWithParameters(params: NSDictionary?, completion: @escaping (_ status: Status?, _ error: NSError?) ->()) {
+        self.post("1.1/statuses/update.json", parameters: params, success: { (operation, response) in
+            
+            print(response)
+            let status = Status(dictionary: response as! NSDictionary)
+            completion(status, nil)
+            
+        }, failure: { (operation, error) in
+         
+            print(error.localizedDescription)
+            completion(nil, error as NSError?)
+            
+        })
+    }
+    
     // MARK: - Login
 
     func loginWithCompletion(completion: @escaping (_ user: User?, _ error: NSError?) -> ()) {

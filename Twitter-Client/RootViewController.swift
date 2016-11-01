@@ -18,7 +18,7 @@ struct FabButtonLayout {
     
 }
 
-class RootViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class RootViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, TweetDelegate {
     
     // Our tableview to be used for the tweets
     let refreshControl: UIRefreshControl = UIRefreshControl()
@@ -50,6 +50,13 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         loadTweets()
         
+        // Add an observer if we make a tweet add it to the top of the tableview
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: TwitterEvents.StatusPosted), object: nil, queue: nil, using: { (notification) in
+            let status = notification.object as! Status
+            self.statuses?.insert(status, at: 0)
+            self.tweetsTableView.reloadData()
+        })
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -69,9 +76,14 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         // Get status
         let status = statuses![indexPath.row]
-        tweetCell.updateWithStatus(status: status)
+        tweetCell.updateWithStatus(status: status, indexPath: indexPath, update: updateTweet)
         
         return tweetCell
+    }
+    
+    func updateTweet(status: Status, indexPath: IndexPath) {
+        statuses?[indexPath.row] = status
+        // Reload cell if you want to - not recommended
     }
     
     @objc func userPulledToRefresh() {
@@ -137,6 +149,10 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 //        self.navigationController?.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
         
         self.present(tweetComposeViewController, animated: true, completion: nil)
+    }
+    
+    func tweetPassed(status: Status) {
+        
     }
 
 }

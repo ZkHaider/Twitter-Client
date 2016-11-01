@@ -15,6 +15,7 @@ The following **required** functionality is completed:
 The following **optional** features are implemented:
 
 * [X] Optional: After creating a new tweet, a user should be able to view it in the timeline immediately without refetching the timeline from the network.
+* [X] Optional: Material UI - Android Chops
 * [X] Optional: User can search for a specific keyword
 
 ##Video Walkthrough

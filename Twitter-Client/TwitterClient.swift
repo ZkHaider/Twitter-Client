@@ -57,6 +57,25 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
         })
     }
     
+    func searchWithParameters(params: NSDictionary?, completion: @escaping (_ statuses: [Status]?, _ error: NSError?) -> ()) {
+        self.get("1.1/search/tweets.json", parameters: params, success: { (operation, response) in
+            
+            print(response)
+            let statusObject = response as! NSDictionary
+            let statusArray = statusObject["statuses"] as! [NSDictionary]
+            let statuses = Status.statusesWithArray(array: statusArray)
+            completion(statuses, nil)
+            
+        }, failure: { (operation, error) in
+            
+            print(error.localizedDescription)
+            print("Error getting home timeline")
+            completion(nil, error as NSError?)
+            
+        })
+
+    }
+    
     // MARK: - Login
 
     func loginWithCompletion(completion: @escaping (_ user: User?, _ error: NSError?) -> ()) {

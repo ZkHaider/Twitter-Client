@@ -62,6 +62,7 @@ class TwitterFeedController: SearchBarController {
 
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         searchBar.clearButton.addGestureRecognizer(tap)
+        
     }
 
     override func viewDidLoad() {
@@ -99,6 +100,10 @@ class TwitterFeedController: SearchBarController {
         alertController.addAction(cancelAction)
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
     }
     
 }

@@ -176,6 +176,8 @@ extension RootViewController {
         guard let searchBar = searchBarController?.searchBar else {
             return
         }
+        
+        
     }
     
     internal func prepareTableView() {

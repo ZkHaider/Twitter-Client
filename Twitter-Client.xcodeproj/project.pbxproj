@@ -132,9 +132,9 @@
 			isa = PBXGroup;
 			children = (
 				4B30A9741DC570EC00A03867 /* TwitterFeedController.swift */,
+				4B30A9931DC5D1F000A03867 /* LoginViewController.swift */,
 				4B30A9881DC58B7200A03867 /* RootViewController.swift */,
 				4B30A98A1DC594EA00A03867 /* TweetComposeViewController.swift */,
-				4B30A9931DC5D1F000A03867 /* LoginViewController.swift */,
 				4B869FC71DC8A06E00021849 /* TweetDetailViewController.swift */,
 			);
 			name = ViewControllers;

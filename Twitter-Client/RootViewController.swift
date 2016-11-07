@@ -97,7 +97,6 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @objc func userPulledToRefresh() {
-        
         loadTweets()
     }
     

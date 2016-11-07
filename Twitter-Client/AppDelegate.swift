@@ -67,7 +67,10 @@ extension AppDelegate {
         // Override point for customization after application launch.
         if User.currentUser != nil {
             window = UIWindow(frame: Device.bounds)
-            window!.rootViewController = TwitterFeedController(rootViewController: RootViewController())
+            
+            // Create a navigation controller and embed the TwitterFeedController inside it
+            let twitterViewController = TwitterFeedController(rootViewController: RootViewController())
+            window!.rootViewController = twitterViewController
             window!.makeKeyAndVisible()
         } else {
             window = UIWindow(frame: Device.bounds)

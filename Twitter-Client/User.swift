@@ -18,6 +18,7 @@ class User: NSObject {
     var name: String
     var screenName: String
     var profileImageURL: NSURL
+    var backgroundCoverURL: NSURL
     var tagline: String
     var dictionary: NSDictionary
     
@@ -30,6 +31,9 @@ class User: NSObject {
         let profileImageUrlString = dictionary["profile_image_url"] as! String
         let modifiedString = profileImageUrlString.replacingOccurrences(of: "_normal", with: "_bigger")
         self.profileImageURL = NSURL(string: modifiedString)!
+        
+        let backgroundImageUrlString = dictionary["profile_background_image_url"] as! String
+        self.backgroundCoverURL = NSURL(string: backgroundImageUrlString)!
         
         self.tagline = dictionary["description"] as! String
     }

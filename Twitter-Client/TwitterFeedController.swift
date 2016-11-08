@@ -245,14 +245,15 @@ class TwitterFeedController: SearchBarController, UITableViewDataSource, UITable
             self.transition(to: homeViewController)
             view.bringSubview(toFront: menuView)
             
+            toggleSideMenu()
+            
             break
         case 1:
             
             // User hit profile - transition to the profile view controller
-            let profileViewController = mainStoryboard.instantiateViewController(withIdentifier: "profileViewController") as! ProfileViewController
-            profileViewController.user = User.currentUser
-            self.transition(to: profileViewController)
-            view.bringSubview(toFront: menuView)
+            goToProfileViewController(user: User.currentUser!)
+            
+            toggleSideMenu()
             
             break
         default:
@@ -275,6 +276,13 @@ class TwitterFeedController: SearchBarController, UITableViewDataSource, UITable
         cell.itemLabel.text = menuItem
         
         return cell
+    }
+    
+    func goToProfileViewController(user: User) {
+        let profileViewController = mainStoryboard.instantiateViewController(withIdentifier: "profileViewController") as! ProfileViewController
+        profileViewController.user = user
+        self.transition(to: profileViewController)
+        view.bringSubview(toFront: menuView)
     }
     
 }

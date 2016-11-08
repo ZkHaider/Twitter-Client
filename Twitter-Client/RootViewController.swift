@@ -80,6 +80,7 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Configure cell
         tweetCell.updateWithStatus(status: status, indexPath: indexPath, update: updateTweet)
         tweetCell.addSelectionCallback(selected: cellSelected)
+        tweetCell.addPictureTappedCallback(selected: cellProfilePictureTapped)
         
         return tweetCell
     }
@@ -94,6 +95,10 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
     func updateTweet(status: Status, indexPath: IndexPath) {
         statuses?[indexPath.row] = status
         // Reload cell if you want to - not recommended
+    }
+    
+    func cellProfilePictureTapped(user: User) {
+        goToProfileViewController(user: user)
     }
     
     @objc func userPulledToRefresh() {
@@ -163,6 +168,11 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tweetPassed(status: Status) {
         self.statuses?.insert(status, at: 0)
         self.tweetsTableView.reloadData()
+    }
+    
+    func goToProfileViewController(user: User) {
+        let twitterFeedController = self.searchBarController as! TwitterFeedController
+        twitterFeedController.goToProfileViewController(user: user)
     }
 
 }

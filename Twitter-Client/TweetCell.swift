@@ -22,6 +22,7 @@ class TweetCell: UITableViewCell {
     // Our update callback 
     var updateTweet: ((_ updateTweet: Status, _ forIndexPath: IndexPath) -> ())?
     var cellSelected: ((_ status: Status) -> ())?
+    var profilePictureTapped: ((_ user: User) -> ())?
     
     var indexPath: IndexPath?
     var status: Status?
@@ -62,6 +63,10 @@ class TweetCell: UITableViewCell {
         self.cellSelected = selected
     }
     
+    func addPictureTappedCallback(selected: @escaping (_ user: User) -> ()) {
+        self.profilePictureTapped = selected
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -69,6 +74,7 @@ class TweetCell: UITableViewCell {
         
         // Go ahead and set icon buttons
         prepareButtons()
+        prepareUserImage()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -123,9 +129,14 @@ class TweetCell: UITableViewCell {
         updateTweet!(status!, indexPath!)
     }
     
+    @objc func userImageTapped(sender: UIImageView) {
+        profilePictureTapped!((status?.user)!)
+    }
+    
     @IBAction func cellSelected(_ sender: FlatButton) {
         cellSelected!(status!)
     }
+
 }
 
 extension TweetCell {
@@ -162,4 +173,9 @@ extension TweetCell {
         buttonStackView.layoutIfNeeded()
     }
     
+    internal func prepareUserImage() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(userImageTapped(sender:)))
+        self.userImage.addGestureRecognizer(tap)
+    }
+
 }

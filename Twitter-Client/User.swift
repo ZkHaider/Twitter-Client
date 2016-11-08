@@ -21,9 +21,9 @@ class User: NSObject {
     var backgroundCoverURL: NSURL
     var tagline: String
     var dictionary: NSDictionary
-//    var followersCount: Int
+    var followersCount: Int
 //    var followingCount: Int
-//    var tweetCount: Int
+    var tweetCount: Int
     
     init(dictionary: NSDictionary) {
         self.dictionary = dictionary
@@ -39,6 +39,10 @@ class User: NSObject {
         self.backgroundCoverURL = NSURL(string: backgroundImageUrlString)!
         
         self.tagline = dictionary["description"] as! String
+        
+        self.followersCount = dictionary["followers_count"] as! Int
+//        self.followingCount = dictionary["following"] as! Int
+        self.tweetCount = dictionary["statuses_count"] as! Int
     }
     
     func logout() {

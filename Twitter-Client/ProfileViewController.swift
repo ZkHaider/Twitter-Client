@@ -73,6 +73,11 @@ extension ProfileViewController {
         // Go ahead and prepare the user
         coverImageView.loadImage(url: user.backgroundCoverURL as URL)
         profileImageView.loadImage(url: user.profileImageURL as URL)
+        
+        // Set the labels
+        followersLabel.text = String(describing: user.followersCount)
+//        followingLabel.text = String(describing: user.followingCount)
+        tweetsLabel.text = String(describing: user.tweetCount)
     }
     
 }

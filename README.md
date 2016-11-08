@@ -17,7 +17,7 @@ The following **required** functionality is completed:
 * [X] Contains the user header view
 * [X] Contains a section with the users basic stats: # tweets, # following, # followers
 * [ ] Shows the user timeline
-* [ ] Tapping on a user image should bring up that user's profile page
+* [X] Tapping on a user image should bring up that user's profile page
 
 The following **optional** features are implemented:
 

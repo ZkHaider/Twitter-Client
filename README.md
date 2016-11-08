@@ -16,8 +16,8 @@ The following **required** functionality is completed:
 * [X] The menu can look similar to the menu below or feel free to take liberty with the UI.
 * [X] Contains the user header view
 * [X] Contains a section with the users basic stats: # tweets, # following, # followers
-* [] Shows the user timeline
-* [] Tapping on a user image should bring up that user's profile page
+* [ ] Shows the user timeline
+* [ ] Tapping on a user image should bring up that user's profile page
 
 The following **optional** features are implemented:
 

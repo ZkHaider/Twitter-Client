@@ -17,6 +17,9 @@ class TwitterFeedController: SearchBarController {
     
     let menuWidth = UIScreen.main.bounds.width * (2 / 3)
     var menuView: UIView!
+    
+    // We need a temp value holder for the constraint as well
+    var originalLeadingConstant: CGFloat = 0.0
     var leadingConstraint: NSLayoutConstraint = NSLayoutConstraint()
     
     open override func prepare() {
@@ -87,30 +90,82 @@ class TwitterFeedController: SearchBarController {
         let velocity = panGesture.velocity(in: self.rootViewController.view)
         // Figure out what to do with the velocity ?
         
+        // We need a threshold point where we fully animate our the menuview if it reaches this 
+        // value or greater 
+        let threshold = menuWidth / 2
+        
         // Gesture statement
         if panGesture.state == UIGestureRecognizerState.began {
             
-            // WTF do i do here?
+            // We save the original constant here 
+            self.originalLeadingConstant = self.leadingConstraint.constant
             
         } else if panGesture.state == UIGestureRecognizerState.changed {
             
-            // Go ahead and animate the view until threshold is reached 
-            if (translation.x <= menuWidth) {
+            // Create our new constant 
+            let newConstant = self.originalLeadingConstant + translation.x
+
+            // If the translation is between 0 and menuwidth then go ahead and do an animation
+            if (newConstant >= self.originalLeadingConstant && newConstant <= 0) {
+                
                 UIView.animate(
                     withDuration: 0.1,
                     delay: 0.0,
                     options: UIViewAnimationOptions.curveEaseIn, animations: {
                         
-                        // Constraint now becomes
+                        print("new constant: \(self.originalLeadingConstant + translation.x)")
                         
-                        // Translate the view's constraints here 
-                        self.leadingConstraint.constant = self.leadingConstraint.constant + translation.x
-                        print("Constraint now becomes \(self.leadingConstraint.constant)")
+                        // Now go ahead and set the leading constraint constant 
+                        self.leadingConstraint.constant = self.originalLeadingConstant + translation.x
+                        
+                    },
+                    completion: nil)
+            }
+            
+            // Check if the values are negative 
+            if (translation.x >= -menuWidth && translation.x <= 0) {
+                UIView.animate(
+                    withDuration: 0.1,
+                    delay: 0.0,
+                    options: UIViewAnimationOptions.curveEaseIn, animations: {
+                        
+                        // Now go ahead and set the leading constraint constant
+//                        self.leadingConstraint.constant = self.originalLeadingConstant + translation.x
+                        
                     },
                     completion: nil)
             }
             
         } else if panGesture.state == UIGestureRecognizerState.ended {
+            
+            // If the threshold point is reached then fully animate out the menu view
+            if (translation.x <= menuWidth && translation.x >= threshold) {
+                
+                UIView.animate(
+                    withDuration: 0.6,
+                    delay: 0.0,
+                    options: UIViewAnimationOptions.curveEaseIn, animations: {
+                        
+                        // Now go ahead and set the leading constraint constant
+                        self.leadingConstraint.constant = 0
+                        
+                    },
+                    completion: nil)
+                
+            } else if (translation.x < threshold) {
+                
+                UIView.animate(
+                    withDuration: 0.6,
+                    delay: 0.0,
+                    options: UIViewAnimationOptions.curveEaseIn, animations: {
+                        
+                        // Now go ahead and set the leading constraint constant
+                        self.leadingConstraint.constant = self.originalLeadingConstant
+                        
+                    },
+                    completion: nil)
+                
+            }
             
         }
     }
@@ -164,7 +219,7 @@ extension TwitterFeedController {
         
         // Initialize a pan gesture recognizer and add it to the current root view controller's main view
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(panGesture:)))
-        self.rootViewController.view.addGestureRecognizer(panGesture)
+        self.view.addGestureRecognizer(panGesture)
     }
     
     internal func prepareMenuView() {

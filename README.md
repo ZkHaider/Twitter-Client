@@ -11,6 +11,13 @@ The following **required** functionality is completed:
 * [X] User can pull to refresh
 * [X] User can compose a new tweet by tapping on a compose button.
 * [X] User can tap on a tweet to view it, with controls to retweet, favorite, and reply.
+* [X] Dragging anywhere in the view should reveal the menu.
+* [X] The menu should include links to your profile, the home timeline, and the mentions view.
+* [X] The menu can look similar to the menu below or feel free to take liberty with the UI.
+* [X] Contains the user header view
+* [X] Contains a section with the users basic stats: # tweets, # following, # followers
+* [ ] Shows the user timeline
+* [X] Tapping on a user image should bring up that user's profile page
 
 The following **optional** features are implemented:
 

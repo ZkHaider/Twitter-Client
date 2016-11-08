@@ -21,6 +21,9 @@ class User: NSObject {
     var backgroundCoverURL: NSURL
     var tagline: String
     var dictionary: NSDictionary
+//    var followersCount: Int
+//    var followingCount: Int
+//    var tweetCount: Int
     
     init(dictionary: NSDictionary) {
         self.dictionary = dictionary

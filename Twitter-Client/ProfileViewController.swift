@@ -19,8 +19,12 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var headerViewContainer: UIView!
     
-    // MARK: - Variables
+    @IBOutlet weak var followersLabel: UILabel!
+    @IBOutlet weak var tweetsLabel: UILabel!
+    @IBOutlet weak var followingLabel: UILabel!
     
+    // MARK: - Variables
+
     var user: User!
     
     override func viewDidLoad() {
@@ -29,6 +33,7 @@ class ProfileViewController: UIViewController {
         // Prepare things here
         prepareHeaderView()
         prepareProfileImageView()
+        prepareCoverImageView()
         prepareUser()
     }
 
@@ -53,10 +58,21 @@ extension ProfileViewController {
         profileImageView.clipsToBounds = true
     }
     
+    internal func prepareCoverImageView() {
+        
+        let blurEffect = UIBlurEffect(style: .regular)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.translatesAutoresizingMaskIntoConstraints = false
+        blurEffectView.frame = coverImageView.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        headerViewContainer.addSubview(blurEffectView)
+    }
+    
     internal func prepareUser() {
         
         // Go ahead and prepare the user
         coverImageView.loadImage(url: user.backgroundCoverURL as URL)
         profileImageView.loadImage(url: user.profileImageURL as URL)
     }
+    
 }

@@ -106,7 +106,7 @@ class TwitterFeedController: SearchBarController {
             let newConstant = self.originalLeadingConstant + translation.x
 
             // If the translation is between 0 and menuwidth then go ahead and do an animation
-            if (newConstant >= self.originalLeadingConstant && newConstant <= 0) {
+            if (newConstant >= -menuWidth && newConstant <= 0) {
                 
                 UIView.animate(
                     withDuration: 0.1,
@@ -233,6 +233,7 @@ extension TwitterFeedController {
         menuView.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
         menuView.layer.shadowRadius = 2.0
         
+        // TODO: change the background color to something better later
         menuView.backgroundColor = Color.lightBlue.base
         
         // Add as a subview

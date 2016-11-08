@@ -139,6 +139,7 @@ class TwitterFeedController: SearchBarController {
         } else if panGesture.state == UIGestureRecognizerState.ended {
             
             // If the threshold point is reached then fully animate out the menu view
+            // TODO: catch negative translation x here
             if (translation.x <= menuWidth && translation.x >= threshold) {
                 
                 UIView.animate(

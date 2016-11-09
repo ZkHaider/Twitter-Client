@@ -320,14 +320,32 @@
                                                     <constraint firstAttribute="height" constant="70" id="mL9-XB-pHo"/>
                                                 </constraints>
                                             </stackView>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eOP-k5-TLq">
+                                                <rect key="frame" x="0.0" y="328" width="375" height="339"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <prototypes>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tweetCell" id="ik7-pe-3jl" customClass="TweetCell" customModule="Twitter_Client" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ik7-pe-3jl" id="8dR-EO-61D">
+                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        </tableViewCellContentView>
+                                                    </tableViewCell>
+                                                </prototypes>
+                                            </tableView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="Vgr-1g-xHY" firstAttribute="top" secondItem="ieY-wn-rBE" secondAttribute="top" id="4xE-d8-evq"/>
+                                            <constraint firstAttribute="bottom" secondItem="eOP-k5-TLq" secondAttribute="bottom" id="8FR-bz-vSM"/>
                                             <constraint firstItem="1zQ-T6-MGQ" firstAttribute="leading" secondItem="ieY-wn-rBE" secondAttribute="leading" constant="10" id="S0P-GG-qhY"/>
                                             <constraint firstItem="Vgr-1g-xHY" firstAttribute="leading" secondItem="ieY-wn-rBE" secondAttribute="leading" id="YCv-AD-TX2"/>
+                                            <constraint firstAttribute="trailing" secondItem="eOP-k5-TLq" secondAttribute="trailing" id="abj-NV-KOs"/>
+                                            <constraint firstItem="eOP-k5-TLq" firstAttribute="top" secondItem="1zQ-T6-MGQ" secondAttribute="bottom" constant="8" id="dGo-Rw-k2H"/>
                                             <constraint firstAttribute="trailing" secondItem="Vgr-1g-xHY" secondAttribute="trailing" id="efp-Pj-gsD"/>
                                             <constraint firstItem="1zQ-T6-MGQ" firstAttribute="top" secondItem="Vgr-1g-xHY" secondAttribute="bottom" id="g9H-nk-PO5"/>
+                                            <constraint firstItem="eOP-k5-TLq" firstAttribute="leading" secondItem="ieY-wn-rBE" secondAttribute="leading" id="nOP-KL-fKj"/>
                                             <constraint firstAttribute="trailing" secondItem="1zQ-T6-MGQ" secondAttribute="trailing" constant="10" id="xSu-2B-Hg7"/>
                                         </constraints>
                                     </view>

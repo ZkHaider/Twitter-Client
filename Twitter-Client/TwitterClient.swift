@@ -42,6 +42,16 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
         })
     }
     
+    func getUserTimelineWithParams(params: NSDictionary?, completion: @escaping (_ statuses: [Status]?, _ error: NSError?) -> ()) {
+        self.get("", parameters: params, success: { (operation, response) in
+            
+            // TODO: Go ahead and grab the user's timeline
+            
+        }, failure: { (operation, error) in
+            
+        })
+    }
+    
     func tweetWithParameters(params: NSDictionary?, completion: @escaping (_ status: Status?, _ error: NSError?) ->()) {
         self.post("1.1/statuses/update.json", parameters: params, success: { (operation, response) in
             
